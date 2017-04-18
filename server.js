@@ -1,7 +1,7 @@
 var express =  require("express");
 var app = express();
 
-app.use(express.static('public'));
+
 
 const PORT =  process.env.PORT || 3000;
 
@@ -18,6 +18,8 @@ app.use(function (req, res, next) {
     }
 
 });
+
+app.use(express.static('public'));
 
 
 
