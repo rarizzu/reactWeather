@@ -16,10 +16,10 @@ var Form = React.createClass({
     render : function () {
         return (
             <div>
-                <div class="form-group">
+                <div >
                 
                     <form onSubmit={this.onFormSubmit}>
-                        <input type="text" class="form-control" ref="location"/>
+                        <input type="search" ref="location" placeholder="Search By City"/>
                         <button className="button expanded ">Get Weather</button>
                     </form>   
                 </div>            
