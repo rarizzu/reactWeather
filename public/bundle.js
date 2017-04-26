@@ -28650,7 +28650,7 @@
 	        React.createElement(
 	            "h2",
 	            null,
-	            "More Examples"
+	            "Examples"
 	        ),
 	        React.createElement(
 	            "p",
