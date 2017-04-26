@@ -27,8 +27,7 @@ module.exports = {
 
         }, function (res) {
             //error case
-            throw new Error (res.data.message);
-
+            throw new Error("Unable to Fetch Weather for that location");
         });
     }
 }

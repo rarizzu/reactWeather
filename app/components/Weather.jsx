@@ -2,6 +2,7 @@ var React = require("react");
 var Message= require("Message");
 var Form = require("Form");
 var openWeatherMap = require("openWeatherMap");
+var ErrorModal = require("ErrorModal");
 
 
 var Weather = React.createClass({
@@ -17,7 +18,8 @@ var Weather = React.createClass({
 
         
         this.setState ({
-            isLoading : true
+            isLoading : true,
+            errorMessage : undefined
         })
 
         openWeatherMap.getTemp(location).then(function (temp) {
@@ -28,17 +30,17 @@ var Weather = React.createClass({
                     isLoading : false
                });
 
-        }, function (errorMessage) {
+        }, function (e) {
                 //failure logic
                 that.setState({
-                    isLoading: false
-                })
-                alert(errorMessage);
+                    isLoading: false,
+                    errorMessage : e.message //use e because what gets passed into this is actually a javascript error object
+                });
         });
     },
     render: function () {
 
-        var {isLoading, temp, location} = this.state;
+        var {isLoading, temp, location, errorMessage} = this.state;
 
         function renderMessage () {
             if (isLoading) {
@@ -49,12 +51,23 @@ var Weather = React.createClass({
             }
         }
 
+        //make a function to conditionally render the errorModal 
+        function renderError () {
+            if (typeof errorMessage === 'string') {
+                return (
+                    //render the error modal component if errorMessage is a string
+                    <ErrorModal message = {errorMessage} />
+                )
+            }
+        }
+
         return (
            
             <div>
              <h1 className="text-center">Get Weather</h1>
                 <Form onSearch={this.handleSearch} />
                 {renderMessage()}
+                {renderError()}
             </div>
         );
     }
