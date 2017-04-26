@@ -24999,9 +24999,9 @@
 	            null,
 	            " It is ",
 	            props.temp,
-	            " degrees in ",
+	            " Degrees in ",
 	            props.location,
-	            " "
+	            " !"
 	        )
 	    );
 	};
@@ -28651,6 +28651,11 @@
 	            "h2",
 	            null,
 	            "More Examples"
+	        ),
+	        React.createElement(
+	            "p",
+	            null,
+	            "Welcome to examples page"
 	        )
 	    );
 	};
