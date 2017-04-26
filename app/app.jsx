@@ -9,6 +9,14 @@ var Examples = require("Examples");
 
 
 //when returning jsx using render, you can only return one root html element. example, cant add two seperate divs
+
+//load foundation
+//the style! and css! is a loader that is neeeded to properly load in a css file
+require("style!css!foundation-sites/dist/foundation.min.css")
+// start foundation
+$(document).foundation();
+
+
 ReactDOM.render(
       <Router history={hashHistory}> 
           <Route path="/" component={Main}>
