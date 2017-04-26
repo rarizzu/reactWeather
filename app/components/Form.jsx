@@ -17,10 +17,10 @@ var Form = React.createClass({
         return (
             <div>
                 <div class="form-group">
-                <h1> Get Some GD Weather</h1>
+                
                     <form onSubmit={this.onFormSubmit}>
                         <input type="text" class="form-control" ref="location"/>
-                        <button class="btn btn-primary">Get Weather</button>
+                        <button className="button expanded ">Get Weather</button>
                     </form>   
                 </div>            
             </div>
