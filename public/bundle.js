@@ -28756,14 +28756,43 @@
 	        "div",
 	        null,
 	        React.createElement(
-	            "h3",
-	            null,
-	            "About component"
+	            "h1",
+	            { className: "text-center" },
+	            "About Component"
 	        ),
 	        React.createElement(
 	            "p",
 	            null,
-	            " Welcome to the about page "
+	            " Welcome to the about page. This is a brief description about the services the services we provide. "
+	        ),
+	        React.createElement(
+	            "p",
+	            null,
+	            "Here are some of the tools that I used"
+	        ),
+	        React.createElement(
+	            "ul",
+	            null,
+	            React.createElement(
+	                "li",
+	                null,
+	                React.createElement(
+	                    "a",
+	                    { href: "https://facebook.github.io/react" },
+	                    "React"
+	                ),
+	                " This was the Javascript framework that was used."
+	            ),
+	            React.createElement(
+	                "li",
+	                null,
+	                React.createElement(
+	                    "a",
+	                    { href: "http://openweathermap.org" },
+	                    "Open Weather Map"
+	                ),
+	                " I used open weather map to search by city name"
+	            )
 	        )
 	    );
 	};
