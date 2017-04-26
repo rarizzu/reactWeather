@@ -113,7 +113,7 @@
 
 	//load foundation
 	//the style! and css! is a loader that is neeeded to properly load in a css file
-	__webpack_require__(262);
+	__webpack_require__(260);
 	// start foundation
 	$(document).foundation();
 
@@ -24916,17 +24916,20 @@
 	var Nav = __webpack_require__(224);
 
 	var Main = function Main(props) {
-	  return React.createElement(
-	    "div",
-	    null,
-	    React.createElement(Nav, null),
-	    React.createElement(
-	      "h2",
-	      null,
-	      " Main Component"
-	    ),
-	    props.children
-	  );
+	    return React.createElement(
+	        "div",
+	        null,
+	        React.createElement(Nav, null),
+	        React.createElement(
+	            "div",
+	            { className: "row" },
+	            React.createElement(
+	                "div",
+	                { className: "columns medium-6 large-4 small-centered" },
+	                props.children
+	            )
+	        )
+	    );
 	};
 
 	module.exports = Main;
@@ -28775,19 +28778,48 @@
 
 	var React = __webpack_require__(8);
 
+	var _require = __webpack_require__(166),
+	    Link = _require.Link;
+
 	var Examples = function Examples(props) {
 	    return React.createElement(
 	        "div",
 	        null,
 	        React.createElement(
-	            "h2",
-	            null,
+	            "h1",
+	            { className: "text-center" },
 	            "Examples"
 	        ),
 	        React.createElement(
 	            "p",
 	            null,
-	            "Welcome to examples page"
+	            "Here are a few example locations to try out"
+	        ),
+	        React.createElement(
+	            "ol",
+	            null,
+	            React.createElement(
+	                "li",
+	                null,
+	                " ",
+	                React.createElement(
+	                    Link,
+	                    { to: "/?location=Chicago" },
+	                    " Chicago, IL"
+	                ),
+	                "   "
+	            ),
+	            React.createElement(
+	                "li",
+	                null,
+	                " ",
+	                React.createElement(
+	                    Link,
+	                    { to: "/?location=Rio" },
+	                    " Rio, Brazil"
+	                ),
+	                "   "
+	            )
 	        )
 	    );
 	};
@@ -28798,7 +28830,33 @@
 /* 260 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(261)();
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(261);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(263)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!../../css-loader/index.js!./foundation.min.css", function() {
+				var newContent = require("!!../../css-loader/index.js!./foundation.min.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 261 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(262)();
 	// imports
 
 
@@ -28809,7 +28867,7 @@
 
 
 /***/ },
-/* 261 */
+/* 262 */
 /***/ function(module, exports) {
 
 	/*
@@ -28863,32 +28921,6 @@
 		return list;
 	};
 
-
-/***/ },
-/* 262 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(260);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(263)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!../../css-loader/index.js!./foundation.min.css", function() {
-				var newContent = require("!!../../css-loader/index.js!./foundation.min.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
 
 /***/ },
 /* 263 */
