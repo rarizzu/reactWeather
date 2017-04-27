@@ -28804,12 +28804,14 @@
 /* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	/* WEBPACK VAR INJECTION */(function($) {"use strict";
 
 	var React = __webpack_require__(8);
+	var ReactDOM = __webpack_require__(165);
+	var ReactDOMServer = __webpack_require__(267);
 
 	var ErrorModal = React.createClass({
-	    displayName: 'ErrorModal',
+	    displayName: "ErrorModal",
 
 
 	    getDefaultProps: function getDefaultProps() {
@@ -28824,44 +28826,50 @@
 	    },
 	    //componentDidMount is called after the render method
 	    componentDidMount: function componentDidMount() {
-	        //need to create a new instance of foundation reveal
-	        //need to pass in what modal you want to call, in this case that is the ID
-	        var modal = new Foundation.Reveal($('#error-modal'));
-	        //after component renders, then it will call thi modal.open() and open the id we passed in 
-	        modal.open();
-	    },
-	    render: function render() {
 	        var _props = this.props,
 	            title = _props.title,
 	            message = _props.message;
 
-	        return (
-	            //must set data-revel and data-close to empty strings
+	        var modalMarkup = React.createElement(
+	            "div",
+	            { id: "error-modal", className: "reveal tiny text-center", "data-reveal": "" },
 	            React.createElement(
-	                'div',
-	                { id: 'error-modal', className: 'reveal tiny text-center', 'data-reveal': '' },
+	                "h4",
+	                null,
+	                title
+	            ),
+	            React.createElement(
+	                "p",
+	                null,
+	                message
+	            ),
+	            React.createElement(
+	                "p",
+	                null,
 	                React.createElement(
-	                    'h4',
-	                    null,
-	                    title
+	                    "button",
+	                    { className: "button hollow", "data-close": "" },
+	                    "  Okay  "
 	                ),
-	                React.createElement(
-	                    'p',
-	                    null,
-	                    message
-	                ),
-	                React.createElement(
-	                    'p',
-	                    null,
-	                    React.createElement(
-	                        'button',
-	                        { className: 'button hollow', 'data-close': '' },
-	                        '  Okay  '
-	                    ),
-	                    ' '
-	                )
+	                " "
 	            )
 	        );
+
+	        var $modal = $(ReactDOMServer.renderToString(modalMarkup));
+	        $(ReactDOM.findDOMNode(this)).html($modal);
+
+	        //need to create a new instance of foundation reveal
+	        //need to pass in what modal you want to call, in this case that is the ID
+	        var modal = new Foundation.Reveal($('#error-modal'));
+	        //after component renders, then it will call thi modal.open() and open the id we passed in 
+
+	        //foundation doesnt work well weith this modal.open() call with React
+	        //the above steps are necessary to fix that
+	        modal.open();
+	    },
+	    render: function render() {
+
+	        return React.createElement("div", null);
 	    }
 	});
 
@@ -29368,6 +29376,15 @@
 	exports.push([module.id, ".page-title {\n  margin-top: 10.5rem;\n  margin-bottom: 10.5rem; }\n\ninput[type=search] {\n  box-shadow: none; }\n", ""]);
 
 	// exports
+
+
+/***/ },
+/* 267 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	module.exports = __webpack_require__(155);
 
 
 /***/ }
