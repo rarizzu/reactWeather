@@ -6,10 +6,21 @@ var Nav = React.createClass({
 
 onSearch: function (e) {
     e.preventDefault();
-    alert("not yet wired up");
+    var location = this.refs.location.value;
+    //if you are including a ref or variable in a URL query (API call in this case)
+    //you need to encode the URI
+    var encodedLocation = encodeURIComponent(location);
+
+    if (location.length > 0 ){
+        this.refs.location.value= "";
+        //window.location below will pop that encodedLocation query string into the URL
+        //this will not automatically make an API call though
+        //the below is the new prop that is sent to the URL which is related to the weather.jsx
+        window.location.hash ='#/?location=' + encodedLocation;
+        
+    }
+
 },
-
-
 render: function () {
 return (
     //create top var with foundation
@@ -26,7 +37,7 @@ return (
             <form onSubmit ={this.onSearch}>
                 <ul className="menu">
                     <li>
-                        <input type="search" placeholder="Search Weather" />
+                        <input type="search" placeholder="Search Weather" ref="location" />
                     </li>
 
                     <li>
